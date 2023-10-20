@@ -10,7 +10,7 @@
 //     try {
 //       // dynamic -> http body
 //       Response<dynamic> response =
-//       await dio.post("/join", data: requestDTO.toJson());
+//           await dio.post("/join", data: requestDTO.toJson());
 //       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
 //       //responseDTO.data = User.fromJson(responseDTO.data);
 //
@@ -24,7 +24,7 @@
 //   Future<ResponseDTO> fetchLogin(LoginReqDTO requestDTO) async {
 //     try {
 //       Response<dynamic> response =
-//       await dio.post<dynamic>("/login", data: requestDTO.toJson());
+//           await dio.post<dynamic>("/login", data: requestDTO.toJson());
 //
 //       print(response.data);
 //

@@ -1,4 +1,4 @@
-import 'package:flutter_blog/data/mock/post.dart';
+import 'package:flutter_blog/data/model/post.dart';
 import 'package:flutter_blog/data/repository/post_repository.dart';
 import 'package:flutter_blog/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,12 +16,14 @@ class PostDetailViewModel extends StateNotifier<PostDetailModel?> {
   PostDetailViewModel(this.ref, super.state);
 
   Future<void> notifyInit() async {
-    Post post = await PostRepository().fetchPostDetail();
+    Post post = await PostRepository().fetchPostDetail(1);
     state = PostDetailModel(post);
   }
 }
 
 // 3. 창고 관리자
-final postDetailProvider = StateNotifierProvider.autoDispose<PostDetailViewModel, PostDetailModel?>((ref) {
+final postDetailProvider =
+    StateNotifierProvider.autoDispose<PostDetailViewModel, PostDetailModel?>(
+        (ref) {
   return PostDetailViewModel(ref, null)..notifyInit();
 });
