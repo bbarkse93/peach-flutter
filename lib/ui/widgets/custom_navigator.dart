@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/_core/constants/size.dart';
-import 'package:flutter_blog/data/store/session_store.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomNavigation extends ConsumerWidget {
@@ -34,7 +33,7 @@ class CustomNavigation extends ConsumerWidget {
               TextButton(
                 onPressed: () {
                   scaffoldKey.currentState!.openEndDrawer();
-                  ref.read(sessionProvider).logout();
+                  // ref.read(sessionProvider).logout();
                 },
                 child: const Text(
                   "로그아웃",
