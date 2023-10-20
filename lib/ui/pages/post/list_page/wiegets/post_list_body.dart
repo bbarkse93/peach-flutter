@@ -24,7 +24,12 @@ class PostListBody extends ConsumerWidget {
             paramStore.postDetailId = posts[index].id;
 
             // 2. 화면 이동
-            Navigator.push(context, MaterialPageRoute(builder: (_) => PostDetailPage()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => PostDetailPage(
+                          index: index,
+                        )));
           },
           child: PostListItem(posts[index]),
         );

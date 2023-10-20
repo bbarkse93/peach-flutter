@@ -29,7 +29,7 @@ class PostList extends ConsumerWidget {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => PostDetailPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => PostDetailPage(index: index)));
               },
               child: PostItem(
                   ProductImage: posts[index].productPicUrl,

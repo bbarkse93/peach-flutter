@@ -6,7 +6,9 @@ import 'package:flutter_blog/ui/pages/post/detail_page/widgets/myuserinfo/my_use
 
 // 수정합니다.
 class PostDetailPage extends StatelessWidget {
-  final List<Post> posts = [];
+  final int index;
+
+  PostDetailPage({required this.index});
 
   @override
   Widget build(BuildContext context) {
