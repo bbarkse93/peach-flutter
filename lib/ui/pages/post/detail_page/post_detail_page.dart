@@ -15,7 +15,13 @@ class PostDetailPage extends StatelessWidget {
     productPicUrl: "null",
     content: "1년탄 자전거 팝니다.",
     created: "2023-10-23",
-    user: User(id: 1, username: "ssar", password: 1234, userPicUrl: "ssar.jpg", location: "vikiniCity", created: "2023-10-20"),
+    user: User(
+        id: 1,
+        username: "ssar",
+        password: 1234,
+        userPicUrl: "ssar.jpg",
+        location: "vikiniCity",
+        created: "2023-10-20"),
   );
 
   @override
@@ -29,11 +35,18 @@ class PostDetailPage extends StatelessWidget {
               SliverAppBar(
                 expandedHeight: MediaQuery.of(context).size.height * 0.4,
                 automaticallyImplyLeading: true,
-                leading: Icon(Icons.arrow_back),
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.arrow_back),
+                ),
                 flexibleSpace: PageView.builder(
                   itemCount: 1,
                   itemBuilder: (context, index) {
-                    return Image.network("https://picsum.photos/id/${index + 1}/200/300", fit: BoxFit.cover);
+                    return Image.network(
+                        "https://picsum.photos/id/${index + 1}/200/300",
+                        fit: BoxFit.cover);
                   },
                 ),
                 actions: [
@@ -48,12 +61,14 @@ class PostDetailPage extends StatelessWidget {
                   height: 100.0,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 10.0),
-                    child: MyUserInfo("${post.user.userPicUrl}", "${post.user.username}", "${post.user.location}"),
+                    child: MyUserInfo("${post.user.userPicUrl}",
+                        "${post.user.username}", "${post.user.location}"),
                   ),
                 ),
               ),
               SliverToBoxAdapter(
-                child: MyProductNameAndContent("${post.productName}", "${post.created}", "${post.content}"),
+                child: MyProductNameAndContent("${post.productName}",
+                    "${post.created}", "${post.content}"),
               ),
             ],
           ),
