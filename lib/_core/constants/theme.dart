@@ -10,7 +10,7 @@ AppBarTheme appBarTheme() {
   return const AppBarTheme(
     titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
     centerTitle: true,
-    backgroundColor: Colors.black12,
-    elevation: 0,
+    backgroundColor: Color.fromRGBO(255, 149, 135, 1),
+    elevation: 1,
   );
 }

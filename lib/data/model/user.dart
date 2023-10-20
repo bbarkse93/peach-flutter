@@ -35,21 +35,4 @@ class User {
         userPicUrl = json["userPicUrl"],
         location = json["location"],
         created = json["created"];
-
-  List<User> user = [
-    User(
-        id: 1,
-        username: "ssar",
-        password: 1234,
-        userPicUrl: "ssar.jpg",
-        location: "vikiniCity",
-        created: "2023-10-20"),
-    User(
-        id: 2,
-        username: "cos",
-        password: 1234,
-        userPicUrl: "cos.jpg",
-        location: "vikiniCity",
-        created: "2023-10-20")
-  ];
 }
