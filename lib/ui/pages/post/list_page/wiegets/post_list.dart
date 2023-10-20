@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/data/model/post.dart';
 import 'package:flutter_blog/data/model/user.dart';
+import 'package:flutter_blog/ui/pages/post/detail_page/post_detail_page.dart';
 import 'package:flutter_blog/ui/pages/post/list_page/wiegets/bottom_icon.dart';
 import 'package:flutter_blog/ui/pages/post/list_page/wiegets/post_item.dart';
 
@@ -77,7 +78,9 @@ class PostList extends StatelessWidget {
           itemCount: posts.length,
           itemBuilder: (context, index) {
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => PostDetailPage()));
+              },
               child: PostItem(
                   ProductImage: posts[index].productPicUrl,
                   PorductName: posts[index].productName,
