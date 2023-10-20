@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/ui/pages/post/list_page/post_list_view_model.dart';
+import 'package:flutter_blog/ui/pages/post/list_page/wiegets/app_bar_action.dart';
+import 'package:flutter_blog/ui/pages/post/list_page/wiegets/app_bar_title.dart';
 import 'package:flutter_blog/ui/pages/post/list_page/wiegets/post_list.dart';
-import 'package:flutter_blog/ui/widgets/custom_navigator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
@@ -15,10 +16,14 @@ class PostListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       key: scaffoldKey,
-      drawer: CustomNavigation(scaffoldKey),
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: Text("Blog"),
+        title: AppBarTitle(location: "진구"),
+        actions: [
+          AppBarAction(icon: Icons.search),
+          AppBarAction(icon: Icons.tune),
+          AppBarAction(icon: Icons.add_alert_outlined),
+        ],
       ),
       body: RefreshIndicator(
         key: refreshKey,
