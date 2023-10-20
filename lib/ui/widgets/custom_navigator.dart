@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/_core/constants/move.dart';
 import 'package:flutter_blog/_core/constants/size.dart';
 import 'package:flutter_blog/data/store/session_store.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,10 +20,7 @@ class CustomNavigation extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextButton(
-                onPressed: () {
-                  scaffoldKey.currentState!.openEndDrawer();
-                  Navigator.pushNamed(context, Move.postWritePage);
-                },
+                onPressed: () {},
                 child: const Text(
                   "글쓰기",
                   style: TextStyle(

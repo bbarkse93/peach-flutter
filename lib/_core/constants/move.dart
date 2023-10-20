@@ -7,7 +7,6 @@ class Move {
   static String loginPage = "/login";
   static String joinPage = "/join";
   static String postListPage = "/post/list";
-  static String postWritePage = "/post/write";
   static String userInfoPage = "/user/info";
 }
 

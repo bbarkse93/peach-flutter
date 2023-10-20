@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/ui/pages/post/detail_page/widgets/mybottom/my_elevated_button.dart';
 
 class MyBottomAppBar extends StatelessWidget {
   const MyBottomAppBar({
@@ -24,20 +25,12 @@ class MyBottomAppBar extends StatelessWidget {
           ),
           Expanded(
             flex: 1,
-            child: MyElevatedButton(),
+            child: MyElevatedButton("전화하기"),
           ),
           SizedBox(width: 10),
           Expanded(
             flex: 1,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text("채팅하기", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                backgroundColor: Colors.deepOrange,
-                minimumSize: Size(100, 45),
-              ),
-            ),
+            child: MyElevatedButton("채팅하기"),
           )
         ],
       ),
