@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/data/model/post.dart';
+import 'package:flutter_blog/data/mock/post.dart';
 
 class PostListItem extends StatelessWidget {
   final Post post;
@@ -8,8 +8,7 @@ class PostListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text("${post.productName}",
-          style: TextStyle(fontWeight: FontWeight.bold)),
+      title: Text("${post.productName}", style: TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Text(
         "${post.content}",
         style: TextStyle(color: Colors.black45),
