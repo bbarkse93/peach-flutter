@@ -4,6 +4,7 @@ import 'package:flutter_blog/data/model/user.dart';
 import 'package:flutter_blog/ui/pages/post/list_page/wiegets/bottom_icon.dart';
 import 'package:flutter_blog/ui/pages/post/list_page/wiegets/post_item.dart';
 
+// 수정합니다.
 class PostList extends StatelessWidget {
   List<Post> posts = [
     Post(
