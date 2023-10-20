@@ -6,9 +6,11 @@ import 'package:flutter_blog/ui/pages/post/detail_page/widgets/myuserinfo/my_use
 
 // 수정합니다.
 class PostDetailPage extends StatelessWidget {
+
   final int index;
 
   PostDetailPage({required this.index});
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +24,18 @@ class PostDetailPage extends StatelessWidget {
                 expandedHeight: MediaQuery.of(context).size.height * 0.4,
                 automaticallyImplyLeading: true,
                 leading: IconButton(
+
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
                     icon: Icon(Icons.arrow_back)),
+
                 flexibleSpace: PageView.builder(
                   itemCount: 1,
                   itemBuilder: (context, index) {
-                    return Image.network("https://picsum.photos/id/${index + 1}/200/300", fit: BoxFit.cover);
+                    return Image.network(
+                        "https://picsum.photos/id/${index + 1}/200/300",
+                        fit: BoxFit.cover);
                   },
                 ),
                 actions: [
@@ -44,12 +50,16 @@ class PostDetailPage extends StatelessWidget {
                   height: 100.0,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 10.0),
+
                     child: MyUserInfo("${posts[index].user.userPicUrl}", "${posts[index].user.username}", "${posts[index].user.location}"),
+
                   ),
                 ),
               ),
               SliverToBoxAdapter(
+
                 child: MyProductNameAndContent("${posts[index].productName}", "${posts[index].created}", "${posts[index].content}"),
+
               ),
             ],
           ),
