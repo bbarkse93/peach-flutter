@@ -9,9 +9,10 @@ class PostListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text("${post.productName}", style: TextStyle(fontWeight: FontWeight.bold)),
+      title: Text("${post.productName}",
+          style: TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Text(
-        "${post.content}",
+        "${post.price}",
         style: TextStyle(color: Colors.black45),
         overflow: TextOverflow.ellipsis,
         maxLines: 1,

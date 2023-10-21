@@ -1,7 +1,10 @@
+import 'package:flutter_blog/data/dto/response_dto.dart';
 import 'package:flutter_blog/data/model/post.dart';
 import 'package:flutter_blog/data/repository/post_repository.dart';
+import 'package:flutter_blog/data/store/param_store.dart';
 import 'package:flutter_blog/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
 // 창고 데이터
 class PostDetailModel {
@@ -11,13 +14,15 @@ class PostDetailModel {
 
 // 창고
 class PostDetailViewModel extends StateNotifier<PostDetailModel?> {
-  final mContext = navigatorKey.currentContext;
-  final Ref ref;
   PostDetailViewModel(this.ref, super.state);
+  final Ref ref;
 
-  Future<void> notifyInit() async {
-    Post post = await PostRepository().fetchPostDetail(1);
-    state = PostDetailModel(post);
+  Future<void> notifyInit(int id) async {
+    ResponseDTO responseDTO = await PostRepository().fetchPostDetail(
+      "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtZXRhY29kaW5nLWtleSIsImlkIjoxLCJlbWFpbCI6InNzYXIiLCJleHAiOjE2OTg0NzE0MDN9._CPg5nVs4u1fcAmevZQysaB8dCHmupzikM35d9zzXTciP1yeT-H7aJ5BBcS6ZXv-N64dnh8h_rgju16JnPHuOA",
+      id,
+    );
+    state = PostDetailModel(responseDTO.data);
   }
 }
 
@@ -25,5 +30,7 @@ class PostDetailViewModel extends StateNotifier<PostDetailModel?> {
 final postDetailProvider =
     StateNotifierProvider.autoDispose<PostDetailViewModel, PostDetailModel?>(
         (ref) {
-  return PostDetailViewModel(ref, null)..notifyInit();
+  Logger().d("나 실행됨 ? postDetailProvider");
+  int postId = ref.read(paramProvider).postDetailId!;
+  return PostDetailViewModel(ref, null)..notifyInit(postId);
 });

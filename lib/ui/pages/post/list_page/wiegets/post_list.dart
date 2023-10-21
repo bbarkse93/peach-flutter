@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/data/store/param_store.dart';
 import 'package:flutter_blog/ui/pages/post/detail_page/post_detail_page.dart';
 import 'package:flutter_blog/ui/pages/post/list_page/post_list_view_model.dart';
 import 'package:flutter_blog/ui/pages/post/list_page/wiegets/bottom_icon.dart';
@@ -27,16 +28,19 @@ class PostList extends ConsumerWidget {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => PostDetailPage(index: index)));
+                  // 1. postId를 paramStore에 저장
+                  ParamStore paramStore = ref.read(paramProvider);
+                  paramStore.postDetailId = posts[index].id;
+
+                  // 2. 화면 이동
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => PostDetailPage()));
                 },
                 child: PostItem(
-                    productName: posts[0].productName,
-                    productPicUrl: posts[0].productPicUrl,
-                    location: posts[0].user.location,
-                    price: posts[0].price),
+                    productName: posts[index].productName,
+                    productPicUrl: posts[index].productPicUrl,
+                    location: posts[index].productName,
+                    price: posts[index].price),
               );
             },
             separatorBuilder: (context, index) {

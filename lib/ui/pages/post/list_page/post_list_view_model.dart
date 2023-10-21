@@ -22,8 +22,6 @@ class PostListViewModel extends StateNotifier<PostListModel?> {
     ResponseDTO productList = await PostRepository().fetchPostList(
         "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtZXRhY29kaW5nLWtleSIsImlkIjoxLCJlbWFpbCI6InNzYXIiLCJleHAiOjE2OTg0NzE0MDN9._CPg5nVs4u1fcAmevZQysaB8dCHmupzikM35d9zzXTciP1yeT-H7aJ5BBcS6ZXv-N64dnh8h_rgju16JnPHuOA");
 
-    // Logger().d("이건가? ${productList.data}");
-    Logger().d("여기는 ${productList.data}");
     state = PostListModel(productList.data);
   }
 }
