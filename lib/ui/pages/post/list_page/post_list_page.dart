@@ -4,7 +4,6 @@ import 'package:flutter_blog/ui/pages/post/list_page/wiegets/app_bar_action.dart
 import 'package:flutter_blog/ui/pages/post/list_page/wiegets/app_bar_title.dart';
 import 'package:flutter_blog/ui/pages/post/list_page/wiegets/post_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 
 class PostListPage extends ConsumerWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -28,7 +27,6 @@ class PostListPage extends ConsumerWidget {
       body: RefreshIndicator(
         key: refreshKey,
         onRefresh: () async {
-          Logger().d("리플래시됨");
           ref.read(postListProvider.notifier).notifyInit();
         },
         child: PostList(),

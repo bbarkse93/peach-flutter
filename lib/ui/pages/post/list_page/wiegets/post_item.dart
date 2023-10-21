@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
 class PostItem extends StatelessWidget {
-  final String ProductImage;
-  final String PorductName;
-  final String Location;
-  final int Price;
+  final String productPicUrl;
+  final String productName;
+  final String location;
+  final int price;
 
-  const PostItem({
-    super.key,
-    required this.ProductImage,
-    required this.PorductName,
-    required this.Location,
-    required this.Price,
-  });
+  PostItem(
+      {required this.productPicUrl,
+      required this.productName,
+      required this.location,
+      required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,7 @@ class PostItem extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(30),
-                child: Image.asset(ProductImage, width: 100, height: 100),
+                child: Image.asset(productPicUrl, width: 100, height: 100),
               ),
               Container(
                 height: 100,
@@ -33,7 +31,7 @@ class PostItem extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(PorductName,
+                      Text(productName,
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -41,12 +39,12 @@ class PostItem extends StatelessWidget {
                           overflow: TextOverflow.ellipsis),
                       SizedBox(height: 5),
                       Text(
-                        Location,
+                        location,
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        "${Price}",
+                        "$price",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,

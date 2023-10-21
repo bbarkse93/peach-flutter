@@ -1,14 +1,13 @@
 // 1. 창고 데이터
 
 import 'package:flutter_blog/data/dto/response_dto.dart';
-import 'package:flutter_blog/data/model/post.dart';
 import 'package:flutter_blog/data/repository/post_repository.dart';
 import 'package:flutter_blog/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
 class PostListModel {
-  List<Post> posts;
+  List<dynamic> posts;
   PostListModel(this.posts);
 }
 
@@ -19,15 +18,13 @@ class PostListViewModel extends StateNotifier<PostListModel?> {
   PostListViewModel(this.ref, super.state);
 
   Future<void> notifyInit() async {
+    Logger().d("통신을 시작합니다.");
     ResponseDTO productList = await PostRepository().fetchPostList(
-        "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtZXRhY29kaW5nLWtleSIsImlkIjoxLCJlbWFpbCI6InNzYXIiLCJleHAiOjE2OTg0MDU4NTZ9.6WHb0IoZWTBJowOUi7mHlfBzR8vk7h5qoAPjCAoEMrXbBD5GcHgfZoEt5pmqGlFryqJn9hYw_WJVZnq1SZLQOw");
+        "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtZXRhY29kaW5nLWtleSIsImlkIjoxLCJlbWFpbCI6InNzYXIiLCJleHAiOjE2OTg0NzE0MDN9._CPg5nVs4u1fcAmevZQysaB8dCHmupzikM35d9zzXTciP1yeT-H7aJ5BBcS6ZXv-N64dnh8h_rgju16JnPHuOA");
 
-    Logger().d("이건가? $productList");
-
+    // Logger().d("이건가? ${productList.data}");
+    Logger().d("여기는 ${productList.data}");
     state = PostListModel(productList.data);
-
-    // productList가 null일 때의 처리
-    Logger().d("API 응답이 null입니다.");
   }
 }
 
