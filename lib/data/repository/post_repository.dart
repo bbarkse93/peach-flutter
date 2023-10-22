@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_blog/_core/constants/http.dart';
+import 'package:flutter_blog/data/dto/post_response.dart';
 import 'package:flutter_blog/data/dto/response_dto.dart';
 import 'package:flutter_blog/data/model/post.dart';
 import 'package:logger/logger.dart';
@@ -8,7 +9,7 @@ class PostRepository {
   Future<ResponseDTO> fetchPostList(String jwt) async {
     try {
       Logger().d("찐 통신시작");
-      Response<dynamic> response = await dio.get(
+      final response = await dio.get(
         "/products",
         options: Options(
           headers: {
@@ -19,29 +20,49 @@ class PostRepository {
       );
       Logger().d("통신 끝!");
       Logger().d(response);
+
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
-      // responseDTO.data = User.fromJson(responseDTO.data);
-      Logger().d("responseDTO.data: ${responseDTO.data}");
 
-      List<dynamic> postList = responseDTO.data as List<dynamic>;
-      Logger().d("이번에는$postList");
-      // List<Post> posts =
-      //     postList.map((postList) => Post.fromJson(postList)).toList();
+      List<dynamic> mapList = responseDTO.data as List<dynamic>;
+      Logger().d("이번에는$mapList");
 
-      responseDTO.data = postList;
-      // Logger().d("repostiory: ${responseDTO.data}");
+      List<PostListPageResponse> PostListPageResponseList =
+          mapList.map((e) => PostListPageResponse.fromJson(e)).toList();
+      Logger().d("PostListPageResponseList : ${PostListPageResponseList}");
+
+      responseDTO.data = PostListPageResponseList;
       return responseDTO;
-    } catch (e) {
-      return ResponseDTO(-1, "실패", null);
-    }
+    } catch (e) {}
+
+    // responseDTO.data가 null인 경우에 대한 처리를 수행
+    return ResponseDTO(-1, "실패", null);
   }
 
-  Future<Post> fetchPostDetail(int id) async {
-    Response<dynamic> response = await dio.get("/products/$id");
+  Future<ResponseDTO> fetchPostDetail(String jwt, int index) async {
+    Logger().d("통신 시작");
+    // 통신
+    final response = await dio.get(
+      "/products/$index",
+      options: Options(
+        headers: {
+          "Authorization":
+              "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtZXRhY29kaW5nLWtleSIsImlkIjoxLCJlbWFpbCI6InNzYXIiLCJleHAiOjE2OTg0NzIyOTZ9._dSJrAtl3NVZhWLUzPQkW_XDW1kiasG9b6ER1lT9hegGCYAiAooJco5LtQQ2OpejVQkdn6kxfFrsVZM6pgO0gw"
+        },
+      ),
+    );
+    Logger().d("통신 끝");
+    Logger().d(response);
+    Logger().d(response.headers);
+    Logger().d(response.data);
+    // 응답 받은 데이터 파싱
+    ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+    Logger().d("테스팅 / responseDTO : ${responseDTO}");
 
-    Map<String, dynamic> body = response.data as Map<String, dynamic>;
+    responseDTO.data = PostDetailPageResponse.fromJson(responseDTO.data);
+    Logger().d("테스팅 / responseDTO.data  : ${responseDTO.data}");
 
-    Post post = Post.fromJson(body);
-    return post;
+    Logger().d("테스팅 / responseDTO : ${responseDTO}");
+
+    return responseDTO;
   }
 }

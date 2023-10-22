@@ -26,11 +26,7 @@ class PostListBody extends ConsumerWidget {
 
             // 2. 화면 이동
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => PostDetailPage(
-                          index: index,
-                        )));
+                context, MaterialPageRoute(builder: (_) => PostDetailPage()));
           },
           child: PostListItem(posts[index]),
         );
