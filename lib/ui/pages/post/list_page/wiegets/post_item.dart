@@ -22,7 +22,8 @@ class PostItem extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(30),
-                child: Image.asset(productPicUrl, width: 100, height: 100),
+                child: Image.asset("assets/images/elements/${productPicUrl}",
+                    width: 100, height: 100),
               ),
               Container(
                 height: 100,

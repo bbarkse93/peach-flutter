@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/data/dto/post_response.dart';
 import 'package:flutter_blog/data/model/post.dart';
 import 'package:flutter_blog/ui/pages/post/detail_page/post_detail_view_model.dart';
 import 'package:flutter_blog/ui/pages/post/detail_page/widgets/mybottom/my_bottom_app_bar.dart';
@@ -17,7 +18,7 @@ class PostDetailPage extends ConsumerWidget {
       Logger().d("모델은 null");
       return CircularProgressIndicator();
     } else {
-      Post post = model.post;
+      PostDetailPageResponse post = model.postDetailPageResponse;
       return SafeArea(
         child: Scaffold(
           body: Padding(
