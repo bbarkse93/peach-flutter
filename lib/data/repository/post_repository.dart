@@ -39,30 +39,37 @@ class PostRepository {
   }
 
   Future<ResponseDTO> fetchPostDetail(String jwt, int index) async {
-    Logger().d("통신 시작");
-    // 통신
-    final response = await dio.get(
-      "/products/$index",
-      options: Options(
-        headers: {
-          "Authorization":
-              "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtZXRhY29kaW5nLWtleSIsImlkIjoxLCJlbWFpbCI6InNzYXIiLCJleHAiOjE2OTg0NzIyOTZ9._dSJrAtl3NVZhWLUzPQkW_XDW1kiasG9b6ER1lT9hegGCYAiAooJco5LtQQ2OpejVQkdn6kxfFrsVZM6pgO0gw"
-        },
-      ),
-    );
-    Logger().d("통신 끝");
-    Logger().d(response);
-    Logger().d(response.headers);
-    Logger().d(response.data);
-    // 응답 받은 데이터 파싱
-    ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
-    Logger().d("테스팅 / responseDTO : ${responseDTO}");
+    try {
+      Logger().d("통신 시작");
+      // 통신
+      final response = await dio.get(
+        "/products/$index",
+        options: Options(
+          headers: {
+            "Authorization":
+                "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtZXRhY29kaW5nLWtleSIsImlkIjoxLCJlbWFpbCI6InNzYXIiLCJleHAiOjE2OTg0NzIyOTZ9._dSJrAtl3NVZhWLUzPQkW_XDW1kiasG9b6ER1lT9hegGCYAiAooJco5LtQQ2OpejVQkdn6kxfFrsVZM6pgO0gw"
+          },
+        ),
+      );
+      Logger().d("통신 끝");
+      Logger().d(response);
+      Logger().d(response.headers);
+      Logger().d(response.data);
 
-    responseDTO.data = PostDetailPageResponse.fromJson(responseDTO.data);
-    Logger().d("테스팅 / responseDTO.data  : ${responseDTO.data}");
+      // 테스트 코드
 
-    Logger().d("테스팅 / responseDTO : ${responseDTO}");
+      // 응답 받은 데이터 파싱
+      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+      Logger().d("테스팅 / 1. responseDTO : ${responseDTO.data}");
 
-    return responseDTO;
+      responseDTO.data = PostDetailPageResponse.fromJson(responseDTO.data);
+      Logger().d("테스팅 / 2. responseDTO.data  : ${responseDTO.data.toString()}");
+
+      Logger().d("테스팅 / 3. responseDTO : ${responseDTO}");
+
+      return responseDTO;
+    } catch (e) {
+      return ResponseDTO(-1, " 실패 ", null);
+    }
   }
 }

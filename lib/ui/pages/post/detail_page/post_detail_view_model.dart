@@ -1,3 +1,4 @@
+import 'package:flutter_blog/data/dto/post_response.dart';
 import 'package:flutter_blog/data/dto/response_dto.dart';
 import 'package:flutter_blog/data/model/post.dart';
 import 'package:flutter_blog/data/repository/post_repository.dart';
@@ -8,8 +9,8 @@ import 'package:logger/logger.dart';
 
 // 창고 데이터
 class PostDetailModel {
-  Post post;
-  PostDetailModel(this.post);
+  PostDetailPageResponse postDetailPageResponse;
+  PostDetailModel(this.postDetailPageResponse);
 }
 
 // 창고
