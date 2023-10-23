@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/data/dto/post_response.dart';
-import 'package:flutter_blog/data/model/post.dart';
 import 'package:flutter_blog/ui/pages/post/detail_page/post_detail_view_model.dart';
 import 'package:flutter_blog/ui/pages/post/detail_page/widgets/mybottom/my_bottom_app_bar.dart';
 import 'package:flutter_blog/ui/pages/post/detail_page/widgets/myproduct/MyProductNamaAndContent.dart';
-import 'package:flutter_blog/ui/pages/post/detail_page/widgets/myuserinfo/my_user_info.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
@@ -36,8 +34,8 @@ class PostDetailPage extends ConsumerWidget {
                   flexibleSpace: PageView.builder(
                     itemCount: 1,
                     itemBuilder: (context, index) {
-                      return Image.network(
-                          "https://picsum.photos/id/${index + 1}/200/300",
+                      return Image.asset(
+                          "assets/images/elements/${post.productPicUrl}",
                           fit: BoxFit.cover);
                     },
                   ),
@@ -53,14 +51,36 @@ class PostDetailPage extends ConsumerWidget {
                     height: 100.0,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 10.0),
-                      child: MyUserInfo("${post.productName}",
-                          "${post.productName}", "${post.productName}"),
+                      child: ListTile(
+                        leading: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage(
+                              "assets/images/profiles/${post.user.userPicUrl}",
+                            ),
+                          ),
+                        ),
+                        title: Text(
+                          "${post.user.username}",
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(
+                          "${post.user.location}",
+                          style: TextStyle(fontSize: 16, color: Colors.black26),
+                        ),
+                      ),
+                      // child: MyUserInfo(
+                      //     "assets/images/profiles/${post.user.userPicUrl}",
+                      //     "${post.user.username}",
+                      //     "${post.user.location}")
                     ),
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: MyProductNameAndContent(
-                      "${post.productName}", "${post.price}", "${post.price}"),
+                  child: MyProductNameAndContent("${post.productName}",
+                      "금액: ${post.price}", "${post.content}"),
                 ),
               ],
             ),

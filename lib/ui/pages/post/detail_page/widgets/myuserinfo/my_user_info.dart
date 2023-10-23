@@ -20,7 +20,7 @@ class MyUserInfo extends StatelessWidget {
               width: 100,
               height: 100,
               child: CircleAvatar(
-                backgroundImage: AssetImage("assets/${imagename}"),
+                backgroundImage: AssetImage("assets/images/profiles/"),
               ),
             ),
           ),
